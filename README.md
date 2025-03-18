@@ -2,7 +2,7 @@
 
 <a href='https://arxiv.org/'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
 <a href='https://huggingface.co/zhZ524/EDEN/tree/main'><img src='https://img.shields.io/badge/HuggingFace-Model-orange'></a>
-<a href='https://bbldCVer.github.io/eden.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
+<a href='https://bbldCVer.github.io/EDEN/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 
 This repository is the official implementation of the following paper:
 
