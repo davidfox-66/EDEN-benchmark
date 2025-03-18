@@ -12,7 +12,7 @@ This repository is the official implementation of the following paper:
 
 <div>
     <h4 align="center">
-        <img src="./assets/comparisons.jpg">
+        <img src="./assets/comparison.jpg">
     </h4>
 </div>
 
