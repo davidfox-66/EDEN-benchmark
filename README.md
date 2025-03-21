@@ -1,6 +1,6 @@
 # [CVPR 2025]EDEN: Enhanced Diffusion for High-quality Large-motion Video Frame Interpolation
 
-<a href='https://arxiv.org/'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+<a href='https://arxiv.org/abs/2503.15831'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
 <a href='https://huggingface.co/zhZ524/EDEN/tree/main'><img src='https://img.shields.io/badge/HuggingFace-Model-orange'></a>
 <a href='https://bbldCVer.github.io/EDEN/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 
