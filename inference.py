@@ -15,7 +15,8 @@ def interpolate(frame0, frame1):
     difference = ((torch.mean(torch.cosine_similarity(frame0, frame1),
                               dim=[1, 2]) - args.cos_sim_mean) / args.cos_sim_std).unsqueeze(1).to(device)
     cond_frames = padder.pad(torch.cat((frame0, frame1), dim=0))
-    noise = torch.randn([1, h // 32 * w // 32, args.model_args["latent_dim"]]).to(device)
+    new_h, new_w = cond_frames.shape[2:]
+    noise = torch.randn([1, new_h // 32 * new_w // 32, args.model_args["latent_dim"]]).to(device)
     denoise_kwargs = {"cond_frames": cond_frames, "difference": difference}
     samples = sample_fn(noise, eden.denoise, **denoise_kwargs)[-1]
     denoise_latents = samples / args.vae_scaler + args.vae_shift
