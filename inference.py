@@ -56,14 +56,17 @@ if video_path:
     interpolated_video_save_path = f"{interpolated_results_dir}/interpolated.mp4"
     interpolated_video = []
     video_frames, _, video_info = torchvision.io.read_video(video_path)
-    video_frames = video_frames.float().permute(0, 3, 1, 2).to(device) / 255.
+    video_frames = video_frames.float().permute(0, 3, 1, 2) / 255.
     fps = video_info["video_fps"]
     frames_num = video_frames.shape[0]
     for i in range(frames_num - 1):
-        frame_0, frame_1 = video_frames[i].unsqueeze(0), video_frames[i + 1].unsqueeze(0)
-        interpolated_frame = interpolate(frame_0, frame_1)
-        interpolated_video.append(frame_0)
-        interpolated_video.append(interpolated_frame)
+        with torch.no_grad():
+            frame_0, frame_1 = video_frames[i].unsqueeze(0).to(device), video_frames[i + 1].unsqueeze(0).to(device)
+            interpolated_frame = interpolate(frame_0, frame_1)
+            interpolated_video.append(frame_0.cpu())
+            interpolated_video.append(interpolated_frame.cpu())
+            del frame_0, frame_1, interpolated_frame
+            torch.cuda.empty_cache()
     interpolated_video.append(video_frames[-1].unsqueeze(0))
     interpolated_video = (torch.cat(interpolated_video, dim=0).permute(0, 2, 3, 1) * 255.).cpu()
     torchvision.io.write_video(interpolated_video_save_path, interpolated_video, fps=2*fps)
