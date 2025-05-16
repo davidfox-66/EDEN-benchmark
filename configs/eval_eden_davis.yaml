@@ -24,7 +24,7 @@ model_args:
 dataset_name: "DAVIS"
 dataset_args:
   DAVIS:
-    data_dir: datasets/DAVIS
+    data_dir: /home/cx24957/VFI/vfi_data/davis90
     height: 480
     width: 854
 dataloader:
