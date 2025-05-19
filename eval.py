@@ -98,9 +98,9 @@ def main():
             b, _, h, w = cond_frames.shape
             noise = torch.randn([b // 2, h // 32 * w // 32, args.model_args["latent_dim"]]).to(accelerator.device)
             denoise_kwargs = {"cond_frames": cond_frames, "difference": difference}
-            samples = sample_fn(noise, model.module.denoise, **denoise_kwargs)[-1]
+            samples = sample_fn(noise, model.denoise, **denoise_kwargs)[-1]
             denoise_latents = samples / args.vae_scaler + args.vae_shift
-            generated_frames = model.module.decode(denoise_latents)
+            generated_frames = model.decode(denoise_latents)
             generated_frames = padder.unpad(generated_frames.clamp(0., 1.))
         psnr = cal_metrics.cal_psnr(generated_frames, gt)
         ssim = cal_metrics.cal_ssim(generated_frames, gt)
