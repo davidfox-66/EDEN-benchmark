@@ -21,7 +21,8 @@ class SNUFILMDataset(Dataset):
 
     def __getitem__(self, index):
         imgs_path = self.meta_data[index].split(" ")
-        img_paths = [os.path.join(self.image_root, img_path) for img_path in imgs_path]
+        # img_paths = [os.path.join(self.image_root, img_path) for img_path in imgs_path]
+        img_paths = [os.path.join(self.image_root, *img_path.split('/')[3:]) for img_path in imgs_path]
         frame0 = torchvision.io.read_image(img_paths[0])
         frame1 = torchvision.io.read_image(img_paths[2])
         gt = torchvision.io.read_image(img_paths[1])
